@@ -10,7 +10,7 @@
             <option value="runtimeOnly">runtimeOnly</option>
         </select>
 
-        <input id="upload" type="file" onchange="">
+        <input id="upload" type="file" onchange="" onclick="this.value = null">
         <br/><br/>
         <output id="output"> </output>
         <script> 
@@ -37,7 +37,7 @@
             }
 
             // add a function to call when the <input type=file> status changes, but don't "submit" the form
-            document.getElementById( 'upload' ).addEventListener( 'change', file_upload, false );
+            document.getElementById( 'upload' ).addEventListener( 'change', file_upload, false);
         </script>
    </body>
 
