@@ -1,0 +1,44 @@
+<html> 
+
+    <head>
+        <script type="text/javascript" src="converter.js"></script>
+    </head>
+    <body>
+        <select name="prefix" id="prefix">
+            <option value="implementation">implementation</option>
+            <option value="compileOnly">compileOnly</option>
+            <option value="runtimeOnly">runtimeOnly</option>
+        </select>
+
+        <input id="upload" type="file" onchange="">
+        <br/><br/>
+        <output id="output"> </output>
+        <script> 
+            function file_upload(evt) {
+
+                let fl_files = evt.target.files; // JS FileList object
+
+                // use the 1st file from the list
+                let fl_file = fl_files[0];
+
+                let reader = new FileReader(); // built in API
+
+                reader.addEventListener(
+                    "load",
+                    () => {
+                        var drop_down = document.querySelector('#prefix');
+                        var out = convert(reader.result, drop_down.options[drop_down.selectedIndex].value);
+                        document.querySelector("#output").innerHTML = out;
+                    }
+                )
+
+                // Read the file as text.
+                reader.readAsText( fl_file );
+            }
+
+            // add a function to call when the <input type=file> status changes, but don't "submit" the form
+            document.getElementById( 'upload' ).addEventListener( 'change', file_upload, false );
+        </script>
+   </body>
+
+</html>
